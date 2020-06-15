@@ -1,13 +1,13 @@
-Language: English | [中文简体](README-ZH.md)
+Language: [English](https://github.com/flutterchina/nine_grid_view) | 中文简体
 
 [![Pub](https://img.shields.io/pub/v/nine_grid_view.svg?style=flat-square&color=009688)](https://pub.dartlang.org/packages/nine_grid_view)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Pub](https://img.shields.io/pub/v/nine_grid_view.svg?style=flat-square&color=2196F3)](https://pub.flutter-io.cn/packages/nine_grid_view)
 
 ### NineGridView
-Similar to Weibo dynamics, WeChat circle of friends, nine grid view controls to display pictures. Support single big picture preview.  
-It also supports WeChat group and DingTalk group avatar effects.
+类似微博动态，微信朋友圈，展示图片的九宫格控件。支持单张大图预览。  
+同时也支持微信群组，钉钉群组头像效果。
 
 ### DragSortView
-Similar to Weibo/WeChat release dynamic picture selection nine grid view. Support press to enlarge effect, drag and drop sorting, drag and drop to a specified location to delete.
+类似微博/微信发布动态选图九宫格。支持按压放大效果，拖拽排序，拖拽到指定位置删除。
 
 ### Pub
 ```yaml
@@ -16,7 +16,6 @@ dependencies:
 ```
 
 ### Example
-
 ```yaml
 import 'package:nine_grid_view/nine_grid_view.dart';
 
@@ -37,17 +36,21 @@ DragSortView(
   itemBuilder: (BuildContext context, int index) {},
   initBuilder: (BuildContext context) {},
   onDragListener: (MotionEvent event, double itemWidth) {
-    /// Judge to drag to the specified position to delete
+    /// 判断拖动到指定位置删除
     /// return true;
     if (event.globalY > 600) {
       return true;
     }
     return false;
   },
-);   
+);     
 ```
 
 ### Screenshots
+
+截图无法查看？  
+掘金地址：[Flutter 九宫格](https://juejin.im/post/5ebd74b5f265da7bbd2f9aa6)  
+简书地址：[Flutter 九宫格](https://www.jianshu.com/p/0f761fe6ad66)
 
 |<img src="screenshots/nine_grid_view1.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view2.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view3.jpg" width="260" height="513"/>|
 |:---:|:---:|:---:|
@@ -55,9 +58,13 @@ DragSortView(
 |<img src="screenshots/nine_grid_view7.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view8.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view9.gif" width="220" height="465"/>|
 
 ### App
-A Weibo client app developed with Flutter [Fitness](https://github.com/Sky24n/Fitness)。  
-Apk ：[v0.0.2](https://github.com/Sky24n/Doc/blob/master/apks/fitness.apk) (arm64-v8a)
+本组件来源于Flutter仿微博客户端[Fitness](https://github.com/Sky24n/Fitness)。  
+百度云盘：[提取码 ttbn](https://pan.baidu.com/s/1HgBaR68oJYe7nnOTJlSg0Q)  
+腾讯微云：[点击下载](https://share.weiyun.com/5T2hhs8c)  
+请使用微信或QQ浏览器扫码下载！
+
+![](https://upload-images.jianshu.io/upload_images/13222938-0bcbf2ba5a046d25.png)
 
 ### Others
 
-Another [NineGridView](https://github.com/flutterchina/flukit) in [flukit](https://github.com/flutterchina/flukit) UI Kit，using GridView implementation。But in this project used Stack + Positioned。
+另外一个[NineGridView](https://github.com/flutterchina/flukit)在 [flukit](https://github.com/flutterchina/flukit) UI组件库里面，通过封装GridView实现。本项目使用的Stack + Positioned实现。
