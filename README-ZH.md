@@ -66,5 +66,5 @@ DragSortView(
 ![](https://upload-images.jianshu.io/upload_images/13222938-0bcbf2ba5a046d25.png)
 
 ### Others
-
+GitHub : [nine_grid_view](https://github.com/flutterchina/nine_grid_view)  
 另外一个[NineGridView](https://github.com/flutterchina/flukit)在 [flukit](https://github.com/flutterchina/flukit) UI组件库里面，通过封装GridView实现。本项目使用的Stack + Positioned实现。
