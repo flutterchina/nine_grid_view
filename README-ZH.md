@@ -49,8 +49,8 @@ DragSortView(
 ### Screenshots
 
 截图无法查看？  
-掘金地址：[Flutter 九宫格](https://juejin.im/post/5ebd74b5f265da7bbd2f9aa6)  
-简书地址：[Flutter 九宫格](https://www.jianshu.com/p/0f761fe6ad66)
+掘金地址：[Flutter 仿微信/微博九宫格](https://juejin.im/post/5edb5fa46fb9a047bf707993)  
+简书地址：[Flutter 仿微信/微博九宫格](https://www.jianshu.com/p/73548cc82326)
 
 |<img src="screenshots/nine_grid_view1.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view2.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view3.jpg" width="260" height="513"/>|
 |:---:|:---:|:---:|
