@@ -1,6 +1,6 @@
 name: nine_grid_view
-description: Flutter NineGridView & DragSortView, NineGridView similar to Weibo dynamics, WeChat circle of friends, nine grid view controls to display pictures. DragSortView similar to Weibo/WeChat release dynamic picture selection nine grid view. Support press to enlarge effect, drag and drop sorting, drag and drop to a specified location to delete.
-version: 1.0.0
+description: Flutter NineGridView & DragSortView, Similar to Weibo / WeChat nine grid view controls to display pictures.
+version: 1.0.1
 author: Sky24n <sky24no@gmail.com>
 homepage: https://github.com/flutterchina/nine_grid_view
 

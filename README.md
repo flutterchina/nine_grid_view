@@ -12,7 +12,7 @@ Similar to Weibo/WeChat release dynamic picture selection nine grid view. Suppor
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.0
+  nine_grid_view: ^1.0.1
 ```
 
 ### Example
