@@ -211,7 +211,7 @@ class _NineGridViewState extends State<NineGridView> {
   /// build weChat group.
   Widget _buildWeChatGroup(BuildContext context) {
     int itemCount = math.min(9, widget.itemCount);
-    double width = widget.width;
+    double width = widget.width - widget.padding.left - widget.padding.right;
     double space = widget.space;
     double itemW;
 
