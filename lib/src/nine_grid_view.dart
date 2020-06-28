@@ -59,7 +59,6 @@ class NineGridView extends StatefulWidget {
     this.bigImageHeight,
     this.bigImage,
     this.bigImageUrl,
-    this.index,
   })  : assert(type != null),
         assert(itemCount == null || itemCount >= 0),
         assert(itemBuilder != null),
@@ -111,8 +110,6 @@ class NineGridView extends StatefulWidget {
 
   /// Single big picture url.
   final String bigImageUrl;
-
-  final int index;
 
   @override
   State<StatefulWidget> createState() {
