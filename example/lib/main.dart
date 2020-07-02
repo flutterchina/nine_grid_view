@@ -42,8 +42,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _title = 'WeChat Group';
-  NineGridType _gridType = NineGridType.weChatGp;
+  String _title = 'QQ Group';
+
+  NineGridType _gridType = NineGridType.qqGp;
 
   List<ImageBean> imageList = List();
 
@@ -112,11 +113,57 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildGroup(BuildContext context) {
+    Decoration decoration = BoxDecoration(
+      color: Color(0XFFE5E5E5),
+      shape: BoxShape.rectangle,
+      borderRadius: BorderRadius.all(Radius.circular(4)),
+    );
+    int total;
+    switch (_gridType) {
+      case NineGridType.qqGp:
+        total = 5;
+        break;
+      case NineGridType.weChatGp:
+        total = 9;
+        break;
+      case NineGridType.dingTalkGp:
+        total = 4;
+        break;
+    }
+    List<Widget> children = List();
+    for (int i = 0; i < 9; i++) {
+      children.add(NineGridView(
+        width: (MediaQuery.of(context).size.width - 60) / 3,
+        height: (MediaQuery.of(context).size.width - 60) / 3,
+        padding: EdgeInsets.all(2),
+        margin: EdgeInsets.all(5),
+        alignment: Alignment.center,
+        space: 2,
+        arcAngle: 60,
+        type: _gridType,
+        decoration: _gridType == NineGridType.dingTalkGp ? null : decoration,
+        itemCount: i % total + 1,
+        itemBuilder: (BuildContext context, int index) {
+          ImageBean bean = imageList[index];
+          return Utils.getWidget(bean.middlePath);
+        },
+      ));
+    }
+    return Wrap(
+      alignment: WrapAlignment.center,
+      children: children,
+    );
+  }
+
   void _onPopSelected(NineGridType value) {
     print('Sky24n _onPopSelected...... $value');
     if (_gridType != value) {
       _gridType = value;
       switch (value) {
+        case NineGridType.qqGp:
+          _title = 'QQ Group';
+          break;
         case NineGridType.weChatGp:
           _title = 'WeChat Group';
           break;
@@ -150,6 +197,14 @@ class _HomePageState extends State<HomePage> {
               onSelected: _onPopSelected,
               itemBuilder: (BuildContext context) =>
                   <PopupMenuItem<NineGridType>>[
+                    PopupMenuItem<NineGridType>(
+                        value: NineGridType.qqGp,
+                        child: ListTile(
+                            contentPadding: EdgeInsets.all(0.0),
+                            dense: false,
+                            title: Text(
+                              'QQ Group',
+                            ))),
                     PopupMenuItem<NineGridType>(
                         value: NineGridType.weChatGp,
                         child: ListTile(
@@ -205,18 +260,78 @@ class _HomePageState extends State<HomePage> {
                   ]),
         ],
       ),
-      body: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          itemCount: 9,
-          padding: EdgeInsets.all(0),
-          itemBuilder: (BuildContext context, int index) {
-            return _buildItem(context, index);
-          }),
+      body: (_gridType == NineGridType.qqGp ||
+              _gridType == NineGridType.weChatGp ||
+              _gridType == NineGridType.dingTalkGp)
+          ? ListView(
+              physics: AlwaysScrollableScrollPhysics(
+                  parent: BouncingScrollPhysics()),
+              children: <Widget>[
+                SizedBox(height: 15),
+                _buildGroup(context),
+                Offstage(
+                  offstage: _gridType != NineGridType.qqGp,
+                  child: QQGroup(),
+                ),
+              ],
+            )
+          : ListView.builder(
+              physics: BouncingScrollPhysics(),
+              itemCount: 9,
+              padding: EdgeInsets.all(0),
+              itemBuilder: (BuildContext context, int index) {
+                return _buildItem(context, index);
+              }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Utils.pushPage(context, DragSortPage());
         },
         child: Icon(Icons.camera_alt),
+      ),
+    );
+  }
+}
+
+class QQGroup extends StatefulWidget {
+  @override
+  _QQGroupState createState() => _QQGroupState();
+}
+
+class _QQGroupState extends State<QQGroup> with TickerProviderStateMixin {
+  AnimationController _controller;
+  List<ImageBean> imageList = List();
+
+  @override
+  void initState() {
+    super.initState();
+    imageList = Utils.getTestData();
+    _controller = AnimationController(
+        duration: Duration(milliseconds: 2000), vsync: this);
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: NineGridView(
+        width: 200,
+        height: 200,
+        arcAngle: (_controller.value * 180).round().toDouble(),
+        type: NineGridType.qqGp,
+        itemCount: 5,
+        itemBuilder: (BuildContext context, int index) {
+          ImageBean bean = imageList[index];
+          return Utils.getWidget(bean.middlePath);
+        },
       ),
     );
   }

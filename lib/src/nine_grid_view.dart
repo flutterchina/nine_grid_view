@@ -27,6 +27,9 @@ enum NineGridType {
 
   /// like DingTalk group.
   dingTalkGp,
+
+  /// like QQ group.
+  qqGp,
 }
 
 /// big images size cache map.
@@ -47,6 +50,8 @@ class NineGridView extends StatefulWidget {
     this.width,
     this.height,
     this.space: 3,
+    this.arcAngle: 60,
+    this.initIndex: 1,
     this.padding: EdgeInsets.zero,
     this.margin: EdgeInsets.zero,
     this.alignment,
@@ -72,6 +77,12 @@ class NineGridView extends StatefulWidget {
 
   /// The number of logical pixels between each child.
   final double space;
+
+  /// QQ group arc angle (0 ~ 180). def 60.
+  final double arcAngle;
+
+  /// QQ group init index (0 or 1). def 1.
+  final int initIndex;
 
   /// View padding.
   final EdgeInsets padding;
@@ -287,6 +298,89 @@ class _NineGridViewState extends State<NineGridView> {
     );
   }
 
+  /// build QQ group.
+  Widget _buildQQGroup(BuildContext context) {
+    double width = widget.width - widget.padding.left - widget.padding.right;
+    int itemCount = math.min(5, widget.itemCount);
+    if (itemCount == 1) {
+      return ClipOval(
+          child: SizedBox(
+        width: width,
+        height: width,
+        child: widget.itemBuilder(context, 0),
+      ));
+    }
+
+    List<Widget> children = List();
+    double startDegree;
+    double r;
+    double r1;
+    double centerX = width / 2;
+    double centerY = width / 2;
+    switch (itemCount) {
+      case 2:
+        startDegree = 135;
+        r = width / (2 + 2 * math.sin(math.pi / 4));
+        r1 = r;
+        break;
+      case 3:
+        startDegree = 210;
+        r = width / (2 + 4 * math.sin(math.pi * (3 - 2) / (2 * 3)));
+        r1 = r / math.cos(math.pi * (3 - 2) / (2 * 3));
+        double R = r *
+            (1 + math.sin(math.pi / itemCount)) /
+            math.sin(math.pi / itemCount);
+        double dy = 0.5 * (width - R - r * (1 + 1 / math.tan(math.pi / 3)));
+        centerY = dy + r + r1;
+        break;
+      case 4:
+        startDegree = 180;
+        r = width / 4;
+        r1 = r / math.cos(math.pi / 4);
+        break;
+      case 5:
+        startDegree = 126;
+        r = width / (2 + 4 * math.sin(math.pi * (5 - 2) / (2 * 5)));
+        r1 = r / math.cos(math.pi * (5 - 2) / (2 * 5));
+        double R = r *
+            (1 + math.sin(math.pi / itemCount)) /
+            math.sin(math.pi / itemCount);
+        double dy = 0.5 * (width - R - r * (1 + 1 / math.tan(math.pi / 5)));
+        centerY = dy + r + r1;
+        break;
+    }
+
+    for (int i = 0; i < itemCount; i++) {
+      double degree1 = (itemCount == 2 || itemCount == 4) ? (-math.pi / 4) : 0;
+      double x = centerX + r1 * math.sin(degree1 + i * 2 * math.pi / itemCount);
+      double y = centerY - r1 * math.cos(degree1 + i * 2 * math.pi / itemCount);
+
+      double degree = startDegree + i * 2 * 180 / itemCount;
+      if (degree >= 360) degree = degree % 360;
+      double previousX = r + 2 * r * math.sin(degree / 180 * math.pi);
+      double previousY = r - 2 * r * math.cos(degree / 180 * math.pi);
+
+      Widget child = Positioned.fromRect(
+        rect: Rect.fromCircle(center: Offset(x, y), radius: r),
+        child: ClipPath(
+          clipper: QQClipper(
+            total: itemCount,
+            index: i,
+            initIndex: widget.initIndex,
+            previousX: previousX,
+            previousY: previousY,
+            degree: degree,
+            arcAngle: widget.arcAngle,
+          ),
+          child: widget.itemBuilder(context, i),
+        ),
+      );
+      children.add(child);
+    }
+
+    return Stack(children: children);
+  }
+
   /// double is zero.
   bool _isZero(double value) {
     return value == null || value == 0;
@@ -351,6 +445,9 @@ class _NineGridViewState extends State<NineGridView> {
       case NineGridType.dingTalkGp:
         child = _buildDingTalkGroup(context);
         break;
+      case NineGridType.qqGp:
+        child = _buildQQGroup(context);
+        break;
     }
     return Container(
       alignment: widget.alignment,
@@ -394,5 +491,73 @@ class _ImageUtil {
     imageStream = image.image.resolve(ImageConfiguration());
     imageStream.addListener(listener);
     return completer.future;
+  }
+}
+
+/// QQ Clipper.
+class QQClipper extends CustomClipper<Path> {
+  QQClipper({
+    this.total,
+    this.index,
+    this.initIndex: 1,
+    this.previousX,
+    this.previousY,
+    this.degree,
+    this.arcAngle: 60,
+  }) : assert(arcAngle != null && arcAngle >= 0 && arcAngle <= 180);
+
+  final int total;
+  final int index;
+  final int initIndex;
+  final double previousX;
+  final double previousY;
+  final double degree;
+  final double arcAngle;
+
+  @override
+  Path getClip(Size size) {
+    double r = size.width / 2;
+    Path path = Path();
+    List<Offset> points = List();
+
+    if (total == 2 && index == initIndex) {
+      path.addOval(Rect.fromLTRB(0, 0, size.width, size.height));
+    } else {
+      double spaceA = arcAngle / 2;
+      double startA = degree + spaceA;
+      double endA = degree - spaceA;
+      for (double i = startA; i <= 360 + endA; i = i + 1) {
+        double x1 = r + r * math.sin(d2r(i));
+        double y1 = r - r * math.cos(d2r(i));
+        points.add(Offset(x1, y1));
+      }
+
+      double spaceB = math.atan(
+              r * math.sin(d2r(spaceA)) / (2 * r - r * math.cos(d2r(spaceA)))) /
+          math.pi *
+          180;
+      double r1 = (2 * r - r * math.cos(d2r(spaceA))) / math.cos(d2r(spaceB));
+      double startB = degree - 180 - spaceB;
+      double endB = degree - 180 + spaceB;
+      List<Offset> pointsB = List();
+      for (double i = startB; i < endB; i = i + 1) {
+        double x1 = previousX + r1 * math.sin(d2r(i));
+        double y1 = previousY - r1 * math.cos(d2r(i));
+        pointsB.add(Offset(x1, y1));
+      }
+      points.addAll(pointsB.reversed);
+      path.addPolygon(points, true);
+    }
+    return path;
+  }
+
+  /// degree to radian.
+  double d2r(double degree) {
+    return degree / 180 * math.pi;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return this != oldClipper;
   }
 }

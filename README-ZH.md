@@ -4,7 +4,7 @@ Language: [English](https://github.com/flutterchina/nine_grid_view) | 中文简�
 
 ### NineGridView
 类似微博动态，微信朋友圈，展示图片的九宫格控件。支持单张大图预览。  
-同时也支持微信群组，钉钉群组头像效果。
+同时也支持微信群组，钉钉群组，QQ讨论组头像效果。
 
 ### DragSortView
 类似微博/微信发布动态选图九宫格。支持按压放大效果，拖拽排序，拖拽到指定位置删除。
@@ -12,13 +12,14 @@ Language: [English](https://github.com/flutterchina/nine_grid_view) | 中文简�
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.2
+  nine_grid_view: ^1.0.3
 ```
 
 ### Example
 ```yaml
 import 'package:nine_grid_view/nine_grid_view.dart';
 
+// bigImage参数 单张大图建议使用中等质量图片，因为原图太大加载耗时。
 NineGridView(
   margin: EdgeInsets.all(12),
   padding: EdgeInsets.all(5),
@@ -28,6 +29,7 @@ NineGridView(
   itemBuilder: (BuildContext context, int index) {},
 );
 
+// 建议使用略微缩图，因为原图太大可能会引起重复加载导致闪动.
 DragSortView(
   imageList,
   space: 5,
@@ -49,7 +51,7 @@ DragSortView(
 ### Screenshots
 
 截图无法查看？  
-掘金地址：[Flutter 仿微信/微博九宫格](https://juejin.im/post/5ee825ab5188251f3f07af75)  
+掘金地址：[Flutter 仿微信/微博九宫格](https://juejin.im/post/5ee825ab5188251f3f07af75)、[Flutter 仿QQ讨论组头像](https://juejin.im/post/5efd42665188252e6350d496)  
 简书地址：[Flutter 仿微信/微博九宫格](https://www.jianshu.com/p/73548cc82326)
 
 |<img src="screenshots/nine_grid_view1.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view2.jpg" width="260" height="513"/>|<img src="screenshots/nine_grid_view3.jpg" width="260" height="513"/>|

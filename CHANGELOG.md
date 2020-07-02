@@ -1,3 +1,7 @@
+## 1.0.3
+
+* TODO: add QQ Group avatar effects.
+
 ## 1.0.2
 
 * TODO: fix bug.

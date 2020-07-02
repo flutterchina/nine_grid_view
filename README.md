@@ -4,7 +4,7 @@ Language: English | [中文简体](README-ZH.md)
 
 ### NineGridView
 Similar to Weibo dynamics, WeChat circle of friends, nine grid view controls to display pictures. Support single big picture preview.  
-It also supports WeChat group and DingTalk group avatar effects.
+It also supports WeChat group , DingTalk group, QQ group avatar effects.
 
 ### DragSortView
 Similar to Weibo/WeChat release dynamic picture selection nine grid view. Support press to enlarge effect, drag and drop sorting, drag and drop to a specified location to delete.
@@ -12,7 +12,7 @@ Similar to Weibo/WeChat release dynamic picture selection nine grid view. Suppor
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.2
+  nine_grid_view: ^1.0.3
 ```
 
 ### Example
@@ -20,6 +20,7 @@ dependencies:
 ```yaml
 import 'package:nine_grid_view/nine_grid_view.dart';
 
+// bigImage param, It is recommended to use a medium-quality picture, because the original picture is too large and takes time to load.
 NineGridView(
   margin: EdgeInsets.all(12),
   padding: EdgeInsets.all(5),
@@ -29,6 +30,7 @@ NineGridView(
   itemBuilder: (BuildContext context, int index) {},
 );
 
+// It is recommended to use a thumbnail picture，because the original picture is too large, it may cause repeated loading and cause flashing.
 DragSortView(
   imageList,
   space: 5,
@@ -56,7 +58,7 @@ DragSortView(
 
 ### App
 A Weibo client app developed with Flutter [Fitness](https://github.com/Sky24n/Fitness)。  
-Apk ：[v0.0.2](https://github.com/Sky24n/Doc/blob/master/apks/fitness.apk) (arm64-v8a)
+Apk ：[v0.0.3](https://github.com/Sky24n/Doc/blob/master/apks/fitness.apk) (arm64-v8a)
 
 ### Others
 

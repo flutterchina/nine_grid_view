@@ -169,11 +169,11 @@ class DragSortViewState extends State<DragSortView>
 
   @override
   void dispose() {
-    super.dispose();
     _controller?.dispose();
     _zoomController?.dispose();
     _floatController?.dispose();
     _removeOverlay();
+    super.dispose();
   }
 
   /// init child size and positions.
