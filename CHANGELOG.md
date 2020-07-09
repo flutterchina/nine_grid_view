@@ -1,3 +1,7 @@
+## 1.0.5
+
+* TODO: space param support QQ Group.
+
 ## 1.0.3
 
 * TODO: add QQ Group avatar effects.

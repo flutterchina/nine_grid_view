@@ -12,7 +12,7 @@ Language: [English](https://github.com/flutterchina/nine_grid_view) | 中文简�
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.3
+  nine_grid_view: ^1.0.5
 ```
 
 ### Example

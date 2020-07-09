@@ -49,8 +49,8 @@ class NineGridView extends StatefulWidget {
     Key key,
     this.width,
     this.height,
-    this.space: 3,
-    this.arcAngle: 60,
+    this.space: 2,
+    this.arcAngle: 0,
     this.initIndex: 1,
     this.padding: EdgeInsets.zero,
     this.margin: EdgeInsets.zero,
@@ -78,7 +78,7 @@ class NineGridView extends StatefulWidget {
   /// The number of logical pixels between each child.
   final double space;
 
-  /// QQ group arc angle (0 ~ 180). def 60.
+  /// QQ group arc angle (0 ~ 180).
   final double arcAngle;
 
   /// QQ group init index (0 or 1). def 1.
@@ -371,6 +371,7 @@ class _NineGridViewState extends State<NineGridView> {
             previousY: previousY,
             degree: degree,
             arcAngle: widget.arcAngle,
+            space: widget.space,
           ),
           child: widget.itemBuilder(context, i),
         ),
@@ -503,7 +504,8 @@ class QQClipper extends CustomClipper<Path> {
     this.previousX,
     this.previousY,
     this.degree,
-    this.arcAngle: 60,
+    this.arcAngle: 0,
+    this.space,
   }) : assert(arcAngle != null && arcAngle >= 0 && arcAngle <= 180);
 
   final int total;
@@ -513,6 +515,7 @@ class QQClipper extends CustomClipper<Path> {
   final double previousY;
   final double degree;
   final double arcAngle;
+  final double space;
 
   @override
   Path getClip(Size size) {
@@ -523,7 +526,10 @@ class QQClipper extends CustomClipper<Path> {
     if (total == 2 && index == initIndex) {
       path.addOval(Rect.fromLTRB(0, 0, size.width, size.height));
     } else {
-      double spaceA = arcAngle / 2;
+      /// arcAngle and space, prefer to use arcAngle.
+      double spaceA = arcAngle > 0
+          ? (arcAngle / 2)
+          : (math.acos((r - math.min(r, space)) / r) / math.pi * 180);
       double startA = degree + spaceA;
       double endA = degree - spaceA;
       for (double i = startA; i <= 360 + endA; i = i + 1) {
