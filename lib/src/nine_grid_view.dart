@@ -36,7 +36,7 @@ enum NineGridType {
 Map<String, Rect> ngvBigImageSizeMap = HashMap();
 
 /// NineGridView.
-/// like WeChat, WeiBo International, WeChat group, DingTalk group.
+/// like WeChat, WeiBo International, WeChat group, DingTalk group, QQ group.
 ///
 /// Another [NineGridView](https://github.com/flutterchina/flukit) in [flukit](https://github.com/flutterchina/flukit) UI Kit，using GridView implementation。
 class NineGridView extends StatefulWidget {
@@ -49,7 +49,7 @@ class NineGridView extends StatefulWidget {
     Key key,
     this.width,
     this.height,
-    this.space: 2,
+    this.space: 3,
     this.arcAngle: 0,
     this.initIndex: 1,
     this.padding: EdgeInsets.zero,
