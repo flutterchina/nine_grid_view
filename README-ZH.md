@@ -24,7 +24,18 @@ NineGridView(
   margin: EdgeInsets.all(12),
   padding: EdgeInsets.all(5),
   space: 5,
-  type: NineGridType.weChatGp,
+  type: NineGridType.weChat,
+  itemCount: itemCount,
+  itemBuilder: (BuildContext context, int index) {},
+);
+
+// 头像需要设置宽、高参数。
+NineGridView(
+  width: 120,
+  height: 120,
+  padding: EdgeInsets.all(5),
+  space: 5,
+  type: NineGridType.qqGp, //NineGridType.weChatGp, NineGridType.dingTalkGp
   itemCount: itemCount,
   itemBuilder: (BuildContext context, int index) {},
 );

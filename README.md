@@ -25,7 +25,19 @@ NineGridView(
   margin: EdgeInsets.all(12),
   padding: EdgeInsets.all(5),
   space: 5,
-  type: NineGridType.weChatGp,
+  type: NineGridType.weChat,//NineGridType.weChat, NineGridType.weiBo
+  itemCount: itemCount,
+  itemBuilder: (BuildContext context, int index) {},
+);
+
+// group avatar.
+// need width, height param.
+NineGridView(
+  width: 120,
+  height: 120,
+  padding: EdgeInsets.all(5),
+  space: 5,
+  type: NineGridType.qqGp, //NineGridType.weChatGp, NineGridType.dingTalkGp
   itemCount: itemCount,
   itemBuilder: (BuildContext context, int index) {},
 );
