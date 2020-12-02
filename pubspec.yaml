@@ -1,11 +1,11 @@
 name: nine_grid_view
 description: Flutter NineGridView & DragSortView, Similar to Weibo / WeChat nine grid view controls to display pictures.
-version: 1.0.5
+version: 1.0.6
 author: Sky24n <sky24no@gmail.com>
 homepage: https://github.com/flutterchina/nine_grid_view
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:

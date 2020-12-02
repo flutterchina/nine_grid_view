@@ -135,14 +135,11 @@ class _NineGridViewState extends State<NineGridView> {
     int itemCount = math.min(9, widget.itemCount);
     EdgeInsets padding = widget.padding;
     if (itemCount == 0) {
-      return Rect.fromLTRB(
-          0, 0, padding.left + padding.right, padding.top + padding.bottom);
+      return Rect.fromLTRB(0, 0, padding.horizontal, padding.vertical);
     }
     double width = widget.width ??
-        (MediaQuery.of(context).size.width -
-            widget.margin.left -
-            widget.margin.right);
-    width = width - padding.left - padding.right;
+        (MediaQuery.of(context).size.width - widget.margin.horizontal);
+    width = width - padding.horizontal;
     double space = widget.space;
     double itemW;
     if (widget.type == NineGridType.weiBo &&
@@ -155,9 +152,8 @@ class _NineGridViewState extends State<NineGridView> {
     int column = fourGrid ? 2 : math.min(3, itemCount);
     int row = fourGrid ? 2 : (itemCount / 3).ceil();
     double realWidth =
-        itemW * column + space * (column - 1) + padding.left + padding.right;
-    double realHeight =
-        itemW * row + space * (row - 1) + padding.top + padding.bottom;
+        itemW * column + space * (column - 1) + padding.horizontal;
+    double realHeight = itemW * row + space * (row - 1) + padding.vertical;
     return Rect.fromLTRB(itemW, 0, realWidth, realHeight);
   }
 
@@ -219,7 +215,7 @@ class _NineGridViewState extends State<NineGridView> {
   /// build weChat group.
   Widget _buildWeChatGroup(BuildContext context) {
     int itemCount = math.min(9, widget.itemCount);
-    double width = widget.width - widget.padding.left - widget.padding.right;
+    double width = widget.width - widget.padding.horizontal;
     double space = widget.space;
     double itemW;
 
@@ -273,7 +269,7 @@ class _NineGridViewState extends State<NineGridView> {
 
   /// build dingTalk group.
   Widget _buildDingTalkGroup(BuildContext context) {
-    double width = widget.width - widget.padding.left - widget.padding.right;
+    double width = widget.width - widget.padding.horizontal;
     int itemCount = math.min(4, widget.itemCount);
     double itemW = (width - widget.space) / 2;
     List<Widget> children = List();
@@ -300,7 +296,7 @@ class _NineGridViewState extends State<NineGridView> {
 
   /// build QQ group.
   Widget _buildQQGroup(BuildContext context) {
-    double width = widget.width - widget.padding.left - widget.padding.right;
+    double width = widget.width - widget.padding.horizontal;
     int itemCount = math.min(5, widget.itemCount);
     if (itemCount == 1) {
       return ClipOval(
@@ -390,10 +386,8 @@ class _NineGridViewState extends State<NineGridView> {
   /// get big image size.
   Rect _getBigImgSize(double originalWidth, double originalHeight) {
     double width = widget.width ??
-        (MediaQuery.of(context).size.width -
-            widget.margin.left -
-            widget.margin.right);
-    width = width - widget.padding.left - widget.padding.right;
+        (MediaQuery.of(context).size.width - widget.margin.horizontal);
+    width = width - widget.padding.horizontal;
     double itemW = (width - widget.space * 2) / 3;
 
     //double devicePixelRatio = MediaQuery.of(context)?.devicePixelRatio ?? 3;

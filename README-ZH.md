@@ -12,7 +12,7 @@ Language: [English](https://github.com/flutterchina/nine_grid_view) | 中文简�
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.5
+  nine_grid_view: ^1.0.6
 ```
 
 ### Example
@@ -65,10 +65,10 @@ DragSortView(
 掘金地址：[Flutter 仿微信/微博九宫格](https://juejin.im/post/5ee825ab5188251f3f07af75)、[Flutter 仿QQ讨论组头像](https://juejin.im/post/5efd42665188252e6350d496)  
 简书地址：[Flutter 仿微信/微博九宫格](https://www.jianshu.com/p/73548cc82326)
 
-|<img src="https://s1.ax1x.com/2020/08/05/ar88bR.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/arG6OJ.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artZyF.jpg" width="260" height="513"/>|
+|![](https://s1.ax1x.com/2020/08/05/ar88bR.jpg)|![](https://s1.ax1x.com/2020/08/05/arG6OJ.jpg)|![](https://s1.ax1x.com/2020/08/05/artZyF.jpg)|
 |:---:|:---:|:---:|
-|<img src="https://s1.ax1x.com/2020/08/05/artlJx.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artJyD.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/art2wj.jpg" width="260" height="513"/>|
-|<img src="https://s1.ax1x.com/2020/08/05/art4f0.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artIpV.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artXkR.gif" width="220" height="465"/>|
+|![](https://s1.ax1x.com/2020/08/05/artlJx.jpg)|![](https://s1.ax1x.com/2020/08/05/artJyD.jpg)|![](https://s1.ax1x.com/2020/08/05/art2wj.jpg)|
+|![](https://s1.ax1x.com/2020/08/05/art4f0.jpg)|![](https://s1.ax1x.com/2020/08/05/artIpV.jpg)|![](https://s1.ax1x.com/2020/08/05/artXkR.gif)|
 
 ### App
 Flutter仿微博客户端[Fitness](https://github.com/Sky24n/Fitness)。  

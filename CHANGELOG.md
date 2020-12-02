@@ -1,3 +1,7 @@
+## 1.0.6
+
+* TODO: fix DragSortView touch position bug.
+
 ## 1.0.5
 
 * TODO: space param support QQ Group.

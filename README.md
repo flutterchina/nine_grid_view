@@ -12,7 +12,7 @@ Similar to Weibo/WeChat release dynamic picture selection nine grid view. Suppor
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.5
+  nine_grid_view: ^1.0.6
 ```
 
 ### Example
@@ -63,10 +63,10 @@ DragSortView(
 
 ### Screenshots
 
-|<img src="https://s1.ax1x.com/2020/08/05/ar88bR.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/arG6OJ.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artZyF.jpg" width="260" height="513"/>|
+|![](https://s1.ax1x.com/2020/08/05/ar88bR.jpg)|![](https://s1.ax1x.com/2020/08/05/arG6OJ.jpg)|![](https://s1.ax1x.com/2020/08/05/artZyF.jpg)|
 |:---:|:---:|:---:|
-|<img src="https://s1.ax1x.com/2020/08/05/artlJx.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artJyD.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/art2wj.jpg" width="260" height="513"/>|
-|<img src="https://s1.ax1x.com/2020/08/05/art4f0.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artIpV.jpg" width="260" height="513"/>|<img src="https://s1.ax1x.com/2020/08/05/artXkR.gif" width="220" height="465"/>|
+|![](https://s1.ax1x.com/2020/08/05/artlJx.jpg)|![](https://s1.ax1x.com/2020/08/05/artJyD.jpg)|![](https://s1.ax1x.com/2020/08/05/art2wj.jpg)|
+|![](https://s1.ax1x.com/2020/08/05/art4f0.jpg)|![](https://s1.ax1x.com/2020/08/05/artIpV.jpg)|![](https://s1.ax1x.com/2020/08/05/artXkR.gif)|
 
 ### App
 A Weibo client app developed with Flutter [Fitness](https://github.com/Sky24n/Fitness)。  
