@@ -12,7 +12,7 @@ Language: [English](https://github.com/flutterchina/nine_grid_view) | 中文简�
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.6
+  nine_grid_view: ^1.x #latest version
 ```
 
 ### Example
@@ -71,12 +71,7 @@ DragSortView(
 |![](https://s1.ax1x.com/2020/08/05/art4f0.jpg)|![](https://s1.ax1x.com/2020/08/05/artIpV.jpg)|![](https://s1.ax1x.com/2020/08/05/artXkR.gif)|
 
 ### App
-Flutter仿微博客户端[Fitness](https://github.com/Sky24n/Fitness)。  
-百度云盘：[提取码 ttbn](https://pan.baidu.com/s/1HgBaR68oJYe7nnOTJlSg0Q)  
-腾讯微云：[点击下载](https://share.weiyun.com/5T2hhs8c)  
-请使用微信或QQ浏览器扫码下载！
-
-![](https://upload-images.jianshu.io/upload_images/13222938-0bcbf2ba5a046d25.png)
+[Moss App](https://github.com/Sky24n/Moss)
 
 ### Others
 另外一个[NineGridView](https://github.com/flutterchina/flukit)在 [flukit](https://github.com/flutterchina/flukit) UI组件库里面，通过封装GridView实现。本项目使用的Stack + Positioned实现。

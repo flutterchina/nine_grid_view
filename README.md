@@ -12,7 +12,7 @@ Similar to Weibo/WeChat release dynamic picture selection nine grid view. Suppor
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.0.6
+  nine_grid_view: ^1.0.7
 ```
 
 ### Example
@@ -69,8 +69,7 @@ DragSortView(
 |![](https://s1.ax1x.com/2020/08/05/art4f0.jpg)|![](https://s1.ax1x.com/2020/08/05/artIpV.jpg)|![](https://s1.ax1x.com/2020/08/05/artXkR.gif)|
 
 ### App
-A Weibo client app developed with Flutter [Fitness](https://github.com/Sky24n/Fitness)。  
-Apk ：[v0.0.3](https://github.com/Sky24n/Doc/blob/master/apks/fitness.apk) (arm64-v8a)
+Moss ：[moss.apk](https://github.com/Sky24n/Doc/blob/master/apks/moss.apk)
 
 ### Others
 

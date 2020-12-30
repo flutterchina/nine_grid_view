@@ -1,3 +1,7 @@
+## 1.0.7
+
+* TODO: delete DragSortView def color.
+
 ## 1.0.6
 
 * TODO: fix DragSortView touch position bug.

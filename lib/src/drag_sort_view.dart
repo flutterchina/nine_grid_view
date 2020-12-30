@@ -106,10 +106,10 @@ class DragSortViewState extends State<DragSortView>
   AnimationController _floatController;
 
   /// child positions.
-  List<Rect> _positions = List();
+  List<Rect> _positions = [];
 
   /// cache data.
-  List<DragBean> _cacheData = List();
+  List<DragBean> _cacheData = [];
 
   /// drag child index.
   int _dragIndex = -1;
@@ -229,7 +229,6 @@ class DragSortViewState extends State<DragSortView>
               child: Container(
                 width: _itemWidth + space * _zoomController.value * 2,
                 height: _itemWidth + space * _zoomController.value * 2,
-                color: Colors.redAccent,
                 child: overlay,
               ),
             ));
@@ -358,7 +357,7 @@ class DragSortViewState extends State<DragSortView>
 
   /// build child.
   Widget _buildChild(BuildContext context) {
-    List<Widget> children = List();
+    List<Widget> children = [];
     if (_cacheData.isEmpty) {
       for (int i = 0; i < _itemCount; i++) {
         children.add(

@@ -162,7 +162,7 @@ class _NineGridViewState extends State<NineGridView> {
     int itemCount = math.min(9, widget.itemCount);
     double space = widget.space;
     int column = (itemCount == 4 && widget.type != NineGridType.normal) ? 2 : 3;
-    List<Widget> list = List();
+    List<Widget> list = [];
     for (int i = 0; i < itemCount; i++) {
       list.add(Positioned(
           top: (space + itemW) * (i ~/ column),
@@ -236,7 +236,7 @@ class _NineGridViewState extends State<NineGridView> {
     }
 
     int first = itemCount % column;
-    List<Widget> list = List();
+    List<Widget> list = [];
     for (int i = 0; i < itemCount; i++) {
       double left;
       if (first > 0 && i < first) {
@@ -272,7 +272,7 @@ class _NineGridViewState extends State<NineGridView> {
     double width = widget.width - widget.padding.horizontal;
     int itemCount = math.min(4, widget.itemCount);
     double itemW = (width - widget.space) / 2;
-    List<Widget> children = List();
+    List<Widget> children = [];
     for (int i = 0; i < itemCount; i++) {
       children.add(Positioned(
           top: (widget.space + itemW) * (i ~/ 2),
@@ -307,7 +307,7 @@ class _NineGridViewState extends State<NineGridView> {
       ));
     }
 
-    List<Widget> children = List();
+    List<Widget> children = [];
     double startDegree;
     double r;
     double r1;
@@ -515,7 +515,7 @@ class QQClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     double r = size.width / 2;
     Path path = Path();
-    List<Offset> points = List();
+    List<Offset> points = [];
 
     if (total == 2 && index == initIndex) {
       path.addOval(Rect.fromLTRB(0, 0, size.width, size.height));
@@ -539,7 +539,7 @@ class QQClipper extends CustomClipper<Path> {
       double r1 = (2 * r - r * math.cos(d2r(spaceA))) / math.cos(d2r(spaceB));
       double startB = degree - 180 - spaceB;
       double endB = degree - 180 + spaceB;
-      List<Offset> pointsB = List();
+      List<Offset> pointsB = [];
       for (double i = startB; i < endB; i = i + 1) {
         double x1 = previousX + r1 * math.sin(d2r(i));
         double y1 = previousY - r1 * math.cos(d2r(i));
