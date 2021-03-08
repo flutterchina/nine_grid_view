@@ -12,7 +12,7 @@ Language: [English](https://github.com/flutterchina/nine_grid_view) | 中文简�
 ### Pub
 ```yaml
 dependencies:
-  nine_grid_view: ^1.x #latest version
+  nine_grid_view: #latest version
 ```
 
 ### Example
@@ -70,7 +70,10 @@ DragSortView(
 |![](https://s1.ax1x.com/2020/08/05/artlJx.jpg)|![](https://s1.ax1x.com/2020/08/05/artJyD.jpg)|![](https://s1.ax1x.com/2020/08/05/art2wj.jpg)|
 |![](https://s1.ax1x.com/2020/08/05/art4f0.jpg)|![](https://s1.ax1x.com/2020/08/05/artIpV.jpg)|![](https://s1.ax1x.com/2020/08/05/artXkR.gif)|
 
-### App
+## Changelog
+Please see the [Changelog](CHANGELOG.md) page to know what's recently changed.
+
+## App
 [Moss App](https://github.com/Sky24n/Moss)
 
 ### Others

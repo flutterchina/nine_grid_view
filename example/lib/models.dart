@@ -10,19 +10,19 @@ class ImageBean extends DragBean {
   });
 
   /// origin picture file path.
-  String originPath;
+  String? originPath;
 
   /// middle picture file path.
-  String middlePath;
+  String? middlePath;
 
   /// thumb picture file path.
   /// It is recommended to use a thumbnail picture，because the original picture is too large,
   /// it may cause repeated loading and cause flashing.
-  String thumbPath;
+  String? thumbPath;
 
   /// original image width.
-  int originalWidth;
+  int? originalWidth;
 
   /// original image height.
-  int originalHeight;
+  int? originalHeight;
 }

@@ -11,8 +11,8 @@ import 'dart:math' as math;
 /// DragBean
 class DragBean {
   DragBean({
-    this.index,
-    this.selected: false,
+    this.index = 0,
+    this.selected = false,
   });
 
   int index;
@@ -30,16 +30,16 @@ class MotionEvent {
   static const int actionMove = 2;
 
   /// action.
-  int action;
+  int? action;
 
   /// drag index.
-  int dragIndex;
+  int? dragIndex;
 
   /// the global x coordinate system in logical pixels.
-  double globalX;
+  double? globalX;
 
   /// the global y coordinate system in logical pixels.
-  double globalY;
+  double? globalY;
 }
 
 /// Drag sort view.
@@ -51,24 +51,21 @@ class DragSortView extends StatefulWidget {
   /// 建议使用略微缩图，因为原图太大可能会引起重复加载导致闪动.
   DragSortView(
     this.data, {
-    Key key,
+    Key? key,
     this.width,
-    this.space: 5,
-    this.padding: EdgeInsets.zero,
-    this.margin: EdgeInsets.zero,
-    @required this.itemBuilder,
-    @required this.initBuilder,
+    this.space = 5,
+    this.padding = EdgeInsets.zero,
+    this.margin = EdgeInsets.zero,
+    required this.itemBuilder,
+    required this.initBuilder,
     this.onDragListener,
-  })  : assert(data != null),
-        assert(itemBuilder != null),
-        assert(initBuilder != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// picture data.
   final List<DragBean> data;
 
   /// View width.
-  final double width;
+  final double? width;
 
   /// The number of logical pixels between each child.
   final double space;
@@ -86,7 +83,7 @@ class DragSortView extends StatefulWidget {
   final WidgetBuilder initBuilder;
 
   /// On drag listener.
-  final OnDragListener onDragListener;
+  final OnDragListener? onDragListener;
 
   @override
   State<StatefulWidget> createState() {
@@ -97,13 +94,13 @@ class DragSortView extends StatefulWidget {
 class DragSortViewState extends State<DragSortView>
     with TickerProviderStateMixin {
   /// child transposition anim.
-  AnimationController _controller;
+  late AnimationController _controller;
 
   /// child zoom anim.
-  AnimationController _zoomController;
+  late AnimationController _zoomController;
 
   /// child float anim.
-  AnimationController _floatController;
+  late AnimationController _floatController;
 
   /// child positions.
   List<Rect> _positions = [];
@@ -115,13 +112,13 @@ class DragSortViewState extends State<DragSortView>
   int _dragIndex = -1;
 
   /// drag child bean.
-  DragBean _dragBean;
+  DragBean? _dragBean;
 
   /// MotionEvent
-  MotionEvent _motionEvent;
+  MotionEvent _motionEvent = MotionEvent();
 
   /// overlay entry.
-  static OverlayEntry _overlayEntry;
+  static OverlayEntry? _overlayEntry;
 
   /// child count.
   int _itemCount = 0;
@@ -129,9 +126,9 @@ class DragSortViewState extends State<DragSortView>
   /// child width.
   double _itemWidth = 0;
 
-  Offset _downGlobalPos;
-  double _downLeft;
-  double _downTop;
+  Offset _downGlobalPos = Offset.zero;
+  double _downLeft = 0;
+  double _downTop = 0;
   double _floatLeft = 0;
   double _floatTop = 0;
   double _fromTop = 0;
@@ -169,9 +166,9 @@ class DragSortViewState extends State<DragSortView>
 
   @override
   void dispose() {
-    _controller?.dispose();
-    _zoomController?.dispose();
-    _floatController?.dispose();
+    _controller.dispose();
+    _zoomController.dispose();
+    _floatController.dispose();
     _removeOverlay();
     super.dispose();
   }
@@ -191,9 +188,18 @@ class DragSortViewState extends State<DragSortView>
     }
   }
 
+  RenderBox? _getRenderBox(BuildContext context) {
+    RenderObject? renderObject = context.findRenderObject();
+    RenderBox? box;
+    if (renderObject != null) {
+      box = renderObject as RenderBox;
+    }
+    return box;
+  }
+
   /// get widget global coordinate system in logical pixels.
   Offset _getWidgetLocalToGlobal(BuildContext context) {
-    RenderBox box = context.findRenderObject();
+    RenderBox? box = _getRenderBox(context);
     return box == null ? Offset.zero : box.localToGlobal(Offset.zero);
   }
 
@@ -218,7 +224,8 @@ class DragSortViewState extends State<DragSortView>
 
   /// add overlay.
   void _addOverlay(BuildContext context, Widget overlay) {
-    OverlayState overlayState = Overlay.of(context);
+    OverlayState? overlayState = Overlay.of(context);
+    if (overlayState == null) return;
     double space = widget.space;
     if (_overlayEntry == null) {
       _overlayEntry = OverlayEntry(builder: (BuildContext context) {
@@ -233,10 +240,10 @@ class DragSortViewState extends State<DragSortView>
               ),
             ));
       });
-      overlayState.insert(_overlayEntry);
+      overlayState.insert(_overlayEntry!);
     } else {
       //重新绘制UI，类似setState
-      _overlayEntry.markNeedsBuild();
+      _overlayEntry?.markNeedsBuild();
     }
     _zoomController.reset();
     _zoomController.forward();
@@ -244,17 +251,13 @@ class DragSortViewState extends State<DragSortView>
 
   /// update overlay.
   void _updateOverlay() {
-    if (_overlayEntry != null) {
-      _overlayEntry.markNeedsBuild();
-    }
+    _overlayEntry?.markNeedsBuild();
   }
 
   /// remove overlay.
   void _removeOverlay() {
-    if (_overlayEntry != null) {
-      _overlayEntry.remove();
-      _overlayEntry = null;
-    }
+    _overlayEntry?.remove();
+    _overlayEntry = null;
   }
 
   /// get next child index.
@@ -293,7 +296,7 @@ class DragSortViewState extends State<DragSortView>
   /// check top index.
   int _checkIndexTop(Rect other) {
     int index = -1;
-    double area;
+    double? area;
     for (int i = 0; (i < 3 && i < _itemCount); i++) {
       Rect rect = _positions[i];
       Rect over = rect.intersect(other);
@@ -309,7 +312,7 @@ class DragSortViewState extends State<DragSortView>
   /// check bottom index.
   int _checkIndexBottom(Rect other) {
     int tagIndex = -1;
-    double area;
+    double? area;
     for (int i = 0; (i < 3 && i < _itemCount); i++) {
       Rect _rect = _positions[i];
       Rect over = _rect.intersect(other);
@@ -345,12 +348,11 @@ class DragSortViewState extends State<DragSortView>
   /// trigger drag event.
   bool _triggerDragEvent(int action) {
     if (widget.onDragListener != null && _dragIndex != -1) {
-      if (_motionEvent == null) _motionEvent = MotionEvent();
       _motionEvent.dragIndex = _dragIndex;
       _motionEvent.action = action;
       _motionEvent.globalX = _floatLeft;
       _motionEvent.globalY = _floatTop;
-      return widget.onDragListener(_motionEvent, _itemWidth);
+      return widget.onDragListener!(_motionEvent, _itemWidth);
     }
     return false;
   }
@@ -453,7 +455,7 @@ class DragSortViewState extends State<DragSortView>
           _initIndex();
           _dragIndex = index;
           widget.data.remove(_dragBean);
-          widget.data.insert(_dragIndex, _dragBean);
+          widget.data.insert(_dragIndex, _dragBean!);
           _controller.reset();
           _controller.forward();
         }

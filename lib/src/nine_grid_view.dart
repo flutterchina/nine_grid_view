@@ -46,34 +46,31 @@ class NineGridView extends StatefulWidget {
   /// 单张大图建议使用中等质量图片，因为原图太大加载耗时。
   /// you need input (bigImageWidth + bigImageHeight) or (bigImage + bigImageUrl).
   NineGridView({
-    Key key,
+    Key? key,
     this.width,
     this.height,
-    this.space: 3,
-    this.arcAngle: 0,
-    this.initIndex: 1,
-    this.padding: EdgeInsets.zero,
-    this.margin: EdgeInsets.zero,
+    this.space = 3,
+    this.arcAngle = 0,
+    this.initIndex = 1,
+    this.padding = EdgeInsets.zero,
+    this.margin = EdgeInsets.zero,
     this.alignment,
     this.color,
     this.decoration,
-    this.type: NineGridType.weChat,
-    @required this.itemCount,
-    @required this.itemBuilder,
+    this.type = NineGridType.weChat,
+    required this.itemCount,
+    required this.itemBuilder,
     this.bigImageWidth,
     this.bigImageHeight,
     this.bigImage,
     this.bigImageUrl,
-  })  : assert(type != null),
-        assert(itemCount == null || itemCount >= 0),
-        assert(itemBuilder != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// View width.
-  final double width;
+  final double? width;
 
   /// View height.
-  final double height;
+  final double? height;
 
   /// The number of logical pixels between each child.
   final double space;
@@ -91,13 +88,13 @@ class NineGridView extends StatefulWidget {
   final EdgeInsets margin;
 
   /// Align the [child] within the container.
-  final AlignmentGeometry alignment;
+  final AlignmentGeometry? alignment;
 
   /// The color to paint behind the [child].
-  final Color color;
+  final Color? color;
 
   /// The decoration to paint behind the [child].
-  final Decoration decoration;
+  final Decoration? decoration;
 
   /// NineGridView type.
   final NineGridType type;
@@ -109,18 +106,18 @@ class NineGridView extends StatefulWidget {
   final IndexedWidgetBuilder itemBuilder;
 
   /// Single big picture width.
-  final int bigImageWidth;
+  final int? bigImageWidth;
 
   /// Single big picture height.
-  final int bigImageHeight;
+  final int? bigImageHeight;
 
   /// It is recommended to use a medium-quality picture, because the original picture is too large and takes time to load.
   /// 单张大图建议使用中等质量图片，因为原图太大加载耗时。
   /// Single big picture Image.
-  final Image bigImage;
+  final Image? bigImage;
 
   /// Single big picture url.
-  final String bigImageUrl;
+  final String? bigImageUrl;
 
   @override
   State<StatefulWidget> createState() {
@@ -179,20 +176,20 @@ class _NineGridViewState extends State<NineGridView> {
   }
 
   /// build one child.
-  Widget _buildOneChild(BuildContext context) {
-    double bigImgWidth = widget.bigImageWidth?.toDouble();
-    double bigImgHeight = widget.bigImageHeight?.toDouble();
+  Widget? _buildOneChild(BuildContext context) {
+    double? bigImgWidth = widget.bigImageWidth?.toDouble();
+    double? bigImgHeight = widget.bigImageHeight?.toDouble();
     if (!_isZero(bigImgWidth) && !_isZero(bigImgHeight)) {
-      return _getOneChild(context, bigImgWidth, bigImgHeight);
+      return _getOneChild(context, bigImgWidth!, bigImgHeight!);
     } else if (widget.bigImage != null) {
-      String bigImageUrl = widget.bigImageUrl;
-      Rect bigImgRect = ngvBigImageSizeMap[bigImageUrl];
+      String bigImageUrl = widget.bigImageUrl!;
+      Rect? bigImgRect = ngvBigImageSizeMap[bigImageUrl];
       bigImgWidth = bigImgRect?.width;
       bigImgHeight = bigImgRect?.height;
       if (!_isZero(bigImgWidth) && !_isZero(bigImgHeight)) {
-        return _getOneChild(context, bigImgWidth, bigImgHeight);
+        return _getOneChild(context, bigImgWidth!, bigImgHeight!);
       } else {
-        _ImageUtil().getImageSize(widget.bigImage).then((rect) {
+        _ImageUtil().getImageSize(widget.bigImage)?.then((rect) {
           ngvBigImageSizeMap[bigImageUrl] = rect;
           if (!mounted) return;
           setState(() {});
@@ -215,7 +212,7 @@ class _NineGridViewState extends State<NineGridView> {
   /// build weChat group.
   Widget _buildWeChatGroup(BuildContext context) {
     int itemCount = math.min(9, widget.itemCount);
-    double width = widget.width - widget.padding.horizontal;
+    double width = widget.width! - widget.padding.horizontal;
     double space = widget.space;
     double itemW;
 
@@ -269,7 +266,7 @@ class _NineGridViewState extends State<NineGridView> {
 
   /// build dingTalk group.
   Widget _buildDingTalkGroup(BuildContext context) {
-    double width = widget.width - widget.padding.horizontal;
+    double width = widget.width! - widget.padding.horizontal;
     int itemCount = math.min(4, widget.itemCount);
     double itemW = (width - widget.space) / 2;
     List<Widget> children = [];
@@ -296,7 +293,7 @@ class _NineGridViewState extends State<NineGridView> {
 
   /// build QQ group.
   Widget _buildQQGroup(BuildContext context) {
-    double width = widget.width - widget.padding.horizontal;
+    double width = widget.width! - widget.padding.horizontal;
     int itemCount = math.min(5, widget.itemCount);
     if (itemCount == 1) {
       return ClipOval(
@@ -308,9 +305,9 @@ class _NineGridViewState extends State<NineGridView> {
     }
 
     List<Widget> children = [];
-    double startDegree;
-    double r;
-    double r1;
+    double startDegree = 0;
+    double r = 0;
+    double r1 = 0;
     double centerX = width / 2;
     double centerY = width / 2;
     switch (itemCount) {
@@ -379,7 +376,7 @@ class _NineGridViewState extends State<NineGridView> {
   }
 
   /// double is zero.
-  bool _isZero(double value) {
+  bool _isZero(double? value) {
     return value == null || value == 0;
   }
 
@@ -413,9 +410,9 @@ class _NineGridViewState extends State<NineGridView> {
 
   @override
   Widget build(BuildContext context) {
-    Widget child = Container();
-    double realWidth = widget.width;
-    double realHeight = widget.height;
+    Widget? child = Container();
+    double? realWidth = widget.width;
+    double? realHeight = widget.height;
     switch (widget.type) {
       case NineGridType.normal:
       case NineGridType.weiBo:
@@ -459,11 +456,11 @@ class _NineGridViewState extends State<NineGridView> {
 
 /// image util.
 class _ImageUtil {
-  ImageStreamListener listener;
-  ImageStream imageStream;
+  late ImageStreamListener listener;
+  late ImageStream imageStream;
 
   /// get image size.
-  Future<Rect> getImageSize(Image image) {
+  Future<Rect>? getImageSize(Image? image) {
     if (image == null) {
       return null;
     }
@@ -476,7 +473,7 @@ class _ImageUtil {
               0, 0, info.image.width.toDouble(), info.image.height.toDouble()));
         }
       },
-      onError: (dynamic exception, StackTrace stackTrace) {
+      onError: (dynamic exception, StackTrace? stackTrace) {
         imageStream.removeListener(listener);
         if (!completer.isCompleted) {
           completer.completeError(exception, stackTrace);
@@ -492,15 +489,15 @@ class _ImageUtil {
 /// QQ Clipper.
 class QQClipper extends CustomClipper<Path> {
   QQClipper({
-    this.total,
-    this.index,
-    this.initIndex: 1,
-    this.previousX,
-    this.previousY,
-    this.degree,
-    this.arcAngle: 0,
-    this.space,
-  }) : assert(arcAngle != null && arcAngle >= 0 && arcAngle <= 180);
+    this.total = 0,
+    this.index = 0,
+    this.initIndex = 1,
+    this.previousX = 0,
+    this.previousY = 0,
+    this.degree = 0,
+    this.arcAngle = 0,
+    this.space = 0,
+  }) : assert(arcAngle >= 0 && arcAngle <= 180);
 
   final int total;
   final int index;

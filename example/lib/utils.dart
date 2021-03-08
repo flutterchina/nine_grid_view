@@ -8,7 +8,7 @@ class Utils {
     return 'assets/images/$name.$format';
   }
 
-  static Future<T> pushPage<T extends Object>(
+  static Future<T?> pushPage<T extends Object>(
       BuildContext context, Widget page) {
     return Navigator.push(
       context,
@@ -17,7 +17,7 @@ class Utils {
   }
 
   static void showSnackBar(BuildContext context, String msg) {
-    Scaffold.of(context).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(msg),
         duration: Duration(seconds: 2),
@@ -38,7 +38,7 @@ class Utils {
     return Image.asset(getImgPath(url), fit: BoxFit.cover);
   }
 
-  static Image getBigImage(String url) {
+  static Image? getBigImage(String? url) {
     if (url == null || url.isEmpty) return null;
     if (url.startsWith('http')) {
       //return Image(image: CachedNetworkImageProvider(url), fit: BoxFit.cover);
@@ -64,7 +64,7 @@ class Utils {
       'places/india_tanjore_market_merchant.png',
       'places/india_tanjore_thanjavur_temple_carvings.png',
     ];
-    List<ImageBean> list = List();
+    List<ImageBean> list = [];
     for (int i = 0; i < urlList.length; i++) {
       String url = urlList[i];
       list.add(ImageBean(

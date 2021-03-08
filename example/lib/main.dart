@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   NineGridType _gridType = NineGridType.qqGp;
 
-  List<ImageBean> imageList = List();
+  List<ImageBean> imageList = [];
 
   @override
   void initState() {
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           itemCount: itemCount,
           itemBuilder: (BuildContext context, int index) {
             ImageBean bean = imageList[index];
-            return Utils.getWidget(bean.middlePath);
+            return Utils.getWidget(bean.middlePath!);
           },
         ),
       );
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
       itemCount: itemCount,
       itemBuilder: (BuildContext context, int index) {
         ImageBean bean = imageList[index];
-        return Utils.getWidget(bean.middlePath);
+        return Utils.getWidget(bean.middlePath!);
       },
     );
 
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
       shape: BoxShape.rectangle,
       borderRadius: BorderRadius.all(Radius.circular(4)),
     );
-    int total;
+    int total = 1;
     switch (_gridType) {
       case NineGridType.qqGp:
         total = 5;
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
         total = 4;
         break;
     }
-    List<Widget> children = List();
+    List<Widget> children = [];
     for (int i = 0; i < 9; i++) {
       children.add(NineGridView(
         width: (MediaQuery.of(context).size.width - 60) / 3,
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
         itemCount: i % total + 1,
         itemBuilder: (BuildContext context, int index) {
           ImageBean bean = imageList[index];
-          return Utils.getWidget(bean.middlePath);
+          return Utils.getWidget(bean.middlePath!);
         },
       ));
     }
@@ -298,8 +298,8 @@ class QQGroup extends StatefulWidget {
 }
 
 class _QQGroupState extends State<QQGroup> with TickerProviderStateMixin {
-  AnimationController _controller;
-  List<ImageBean> imageList = List();
+  late AnimationController _controller;
+  List<ImageBean> imageList = [];
 
   @override
   void initState() {
@@ -315,7 +315,7 @@ class _QQGroupState extends State<QQGroup> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _controller?.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -330,7 +330,7 @@ class _QQGroupState extends State<QQGroup> with TickerProviderStateMixin {
         itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
           ImageBean bean = imageList[index];
-          return Utils.getWidget(bean.middlePath);
+          return Utils.getWidget(bean.middlePath!);
         },
       ),
     );

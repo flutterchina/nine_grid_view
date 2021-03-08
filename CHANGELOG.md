@@ -1,3 +1,6 @@
+## 2.0.0
+* TODO: Migrate to null-safety.
+
 ## 1.0.7
 
 * TODO: delete DragSortView def color.
