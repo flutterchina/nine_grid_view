@@ -16,7 +16,6 @@ dependencies:
 ```
 
 ### Example
-
 ```yaml
 import 'package:nine_grid_view/nine_grid_view.dart';
 
@@ -62,7 +61,6 @@ DragSortView(
 ```
 
 ### Screenshots
-
 |![](https://s1.ax1x.com/2020/08/05/ar88bR.jpg)|![](https://s1.ax1x.com/2020/08/05/arG6OJ.jpg)|![](https://s1.ax1x.com/2020/08/05/artZyF.jpg)|
 |:---:|:---:|:---:|
 |![](https://s1.ax1x.com/2020/08/05/artlJx.jpg)|![](https://s1.ax1x.com/2020/08/05/artJyD.jpg)|![](https://s1.ax1x.com/2020/08/05/art2wj.jpg)|
@@ -71,9 +69,15 @@ DragSortView(
 ## Changelog
 Please see the [Changelog](CHANGELOG.md) page to know what's recently changed.
 
-## App
-[Moss App](https://github.com/Sky24n/Moss)
-
-### Others
-
+## Others
 Another [NineGridView](https://github.com/flutterchina/flukit) in [flukit](https://github.com/flutterchina/flukit) UI Kit，using GridView implementation。But in this project used Stack + Positioned。
+
+## App
+[Moss](https://github.com/Sky24n/Moss).  
+A GitHub client app developed with Flutter, which supports Android iOS Web.  
+Web &nbsp;&nbsp;&nbsp;&nbsp; ：[Flutter Web](https://sky24n.gitee.io/moss/web/index.html)
+
+|![](https://z3.ax1x.com/2021/04/26/gp1hm6.jpg)|![](https://z3.ax1x.com/2021/04/26/gp1Tte.jpg)|![](https://z3.ax1x.com/2021/04/26/gp17fH.jpg)|
+|:---:|:---:|:---:|
+
+
