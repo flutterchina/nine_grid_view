@@ -412,7 +412,7 @@ class DragSortViewState extends State<DragSortView>
       _init(context, padding, margin);
     }
 
-    int column = (_itemCount > 3 ? 3 : _itemCount + 1);
+    int column = (_itemCount >= 3 ? 3 : _itemCount + 1);
     int row = ((_itemCount + (_itemCount < 9 ? 1 : 0)) / 3).ceil();
     double realWidth =
         _itemWidth * column + widget.space * (column - 1) + padding.horizontal;
